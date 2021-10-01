@@ -19,13 +19,13 @@ Screenshot a region and save to selection.png
     $ treeshot -s > selection.png
 
 ## Args
-  -h  Show this help menu<br>
-  -s  Select region to screenshot (fullscreen by default)<br>
-  -b  Disable border (enabled by default)<br>
-  -c  Border color (#EDD7BD by default)<br>
-  -w  Border width (4 by default)<br>
-  -d  Capture delay in ms<br>
-  -e  Execute shell after capturing (Use `$file` to access the file)<br>
+  `-h`  Show this help menu<br>
+  `-s`  Select region to screenshot (fullscreen by default)<br>
+  `-b`  Disable border (enabled by default)<br>
+  `-c`  Border color (#EDD7BD by default)<br>
+  `-w`  Border width (4 by default)<br>
+  `-d`  Capture delay in ms<br>
+  `-e`  Execute shell after capturing (Use `$file` to access the file)<br>
   
 ## Install
 
