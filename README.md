@@ -1,6 +1,6 @@
 # Treeshot
 
-L3af's Mediocre Screenshot Tool. (Totally not just a wrapper around Maim and ImageMagick)
+L3af's mediocre screenshot tool. (Totally not just a wrapper around Maim and ImageMagick)
 
 ## Requirements
 
@@ -8,10 +8,9 @@ L3af's Mediocre Screenshot Tool. (Totally not just a wrapper around Maim and Ima
 - ImageMagick
 
 ## Args
--  -h  Show this help menu
--  -s  Select region to screenshot (fullscreen by default)
--  -c  Show mouse in the screenshot (disabled by default)
--  -d  Disable border (enabled by default)
--  -b  Border color (#EDD7BD by default)
--  -w  Border width (4 by default)
-
+  -h  Show this help menu<br>
+  -s  Select region to screenshot (fullscreen by default)<br>
+  -c  Show mouse in the screenshot (disabled by default)<br>
+  -d  Disable border (enabled by default)<br>
+  -b  Border color (#EDD7BD by default)<br>
+  -w  Border width (4 by default)<br>
