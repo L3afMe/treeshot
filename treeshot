@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/sh
 
 selection=0
 showCursor=1
@@ -6,7 +6,7 @@ addBorder=1
 borderWidth=4
 borderColor="#EDD7BD"
 
-function showHelp {
+showHelp() {
     echo "  Treeshot - L3af's Mediocre Screenshot Wrapper"
     echo " "
     echo " Args"
