@@ -10,12 +10,15 @@ L3af's mediocre screenshot tool. (Totally not just a wrapper around Maim and Ima
 ## Examples
 
 Screenshot a region and copy to clipboard with a border of 10 pixels colored red.
+
     $ treeshot -s -w10 -b\#FF0000
 
 Screenshot a region and copy to clipboard without adding a border.
+
     $ treeshot -sd
 
 Screenshot a region and save to selection.png
+
     $ treeshot -s > selection.png
 
 ## Args
