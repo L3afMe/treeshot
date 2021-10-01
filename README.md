@@ -4,7 +4,8 @@ L3af's mediocre screenshot tool. (Totally not just a wrapper around Maim and Ima
 
 ## Requirements
 
-- [Slop](https://github.com/naelstrof/slop)
+- [xclip](https://github.com/astrand/xclip)
+- [slop](https://github.com/naelstrof/slop)
 - [ImageMagick](https://github.com/ImageMagick/ImageMagick)
 
 ## Examples
