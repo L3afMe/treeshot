@@ -5,7 +5,7 @@ addBorder=1
 borderWidth=4
 borderColor="#EDD7BD"
 delay=0
-execAfter=0
+execAfter=""
 
 showHelp() {
     echo "  Treeshot - L3af's Mediocre Screenshot Wrapper"
