@@ -14,3 +14,8 @@ L3af's mediocre screenshot tool. (Totally not just a wrapper around Maim and Ima
   -d  Disable border (enabled by default)<br>
   -b  Border color (#EDD7BD by default)<br>
   -w  Border width (4 by default)<br>
+  
+## Install
+
+    $ sudo ./install.sh
+

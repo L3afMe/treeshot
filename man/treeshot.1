@@ -1,0 +1,55 @@
+.TH TREESHOT 1 "October 2021" "MIT License" "User Commands"
+.SH NAME
+.PP
+treeshot - L3af\[aq]s mediocre screenshot tool
+.SH SYNOPSIS
+.PP
+\f[B]treeshot\f[R] [\f[I]OPTIONS\f[R]]
+.SH DESCRIPTION
+.PP
+\f[B]treeshot\f[R] is a tool to screenshot your screen and add a colored
+border.
+.SH EXAMPLES
+.TP
+\f[B]treeshot -s -w\f[R]\f[I]10\f[R] -b\f[R]\f[I]#FF0000\f[R]
+Screenshot a region and add a border of 10 pixels colored red.
+.TP
+\f[B]treeshot -scd\f[R]
+Screenshot a region, without adding a border and showing the cursor.
+.SH OPTIONS
+.PP
+\f[B]-h\f[R]
+.PD 0
+.P
+.PD
+Show the help menu
+.PP
+\f[B]-s\f[R]
+.PD 0
+.P
+.PD
+Select region to screenshot (fullscreen by default)
+.PP
+\f[B]-c\f[R]
+.PD 0
+.P
+.PD
+Show mouse in the screenshot (disabled by default)
+.PP
+\f[B]-d\f[R]
+.PD 0
+.P
+.PD
+Disable border (enabled by default
+.PP
+\f[B]-b\f[R]\f[I]\f[BI]#RGB\f[I]\f[R]
+.PD 0
+.P
+.PD
+Border color (#EDD7BD by default)
+.PP
+\f[B]-w\f[R]\f[I]\f[BI]INT\f[I]\f[R]
+.PD 0
+.P
+.PD
+Border width (4 by default)
