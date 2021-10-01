@@ -12,10 +12,16 @@ Capture a screenshot and copy to clipboard, to save to a file redirect stdout to
 border.
 .SH EXAMPLES
 .TP
-\f[B]treeshot -s -w\f[R]\f[I]10\f[R] -b\f[R]\f[I]#FF0000\f[R]
+\f[B]treeshot -s -w\f[R]\f[I]10\f[R] -c\f[R]\f[I]#FF0000\f[R]
 Screenshot a region and copy to clipboard with a border of 10 pixels colored red.
 .TP
-\f[B]treeshot -sd\f[R]
+\f[B]treeshot -sb\f[R]
+Screenshot a region and copy to clipboard without adding a border.
+.TP
+\f[B]treeshot -s > \f[R]\f[I]selection.png\f[R]
+Screenshot a region and save to selection.png
+.TP
+\f[B]treeshot -s -e"echo $file"\f[R]
 Screenshot a region and copy to clipboard without adding a border.
 .TP
 \f[B]treeshot -s > \f[R]\f[I]selection.png\f[R]
@@ -34,13 +40,13 @@ Show the help menu
 .PD
 Select region to screenshot (fullscreen by default)
 .PP
-\f[B]-d\f[R]
+\f[B]-b\f[R]
 .PD 0
 .P
 .PD
 Disable border (enabled by default
 .PP
-\f[B]-b\f[R]\f[I]\f[BI]#RGB\f[I]\f[R]
+\f[B]-c\f[R]\f[I]\f[BI]#RGB\f[I]\f[R]
 .PD 0
 .P
 .PD
@@ -51,3 +57,15 @@ Border color (#EDD7BD by default)
 .P
 .PD
 Border width (4 by default)
+.PP
+\f[B]-d\f[R]\f[I]\f[BI]MS\f[I]\f[R]
+.PD 0
+.P
+.PD
+Capture delay in ms
+.PP
+\f[B]-e\f[R]\f[I]\f[BI]STRING\f[I]\f[R]
+.PD 0
+.P
+.PD
+Execute shell after capturing (Use $file to access the file)

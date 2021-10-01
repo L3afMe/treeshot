@@ -4,6 +4,8 @@ selection=0
 addBorder=1
 borderWidth=4
 borderColor="#EDD7BD"
+delay=0
+execAfter=0
 
 showHelp() {
     echo "  Treeshot - L3af's Mediocre Screenshot Wrapper"
@@ -21,42 +23,61 @@ showHelp() {
     echo " Args"
     echo "   -h  Show this help menu"
     echo "   -s  Select region to screenshot (fullscreen by default)"
-    echo "   -d  Disable border (enabled by default)"
-    echo "   -b  Border color (#EDD7BD by default)"
+    echo "   -b  Disable border (enabled by default)"
+    echo "   -c  Border color (#EDD7BD by default)"
     echo "   -w  Border width (4 by default)"
+    echo "   -d  Capture delay in ms"
+    echo "   -e  Execute shell after capturing (Use \$file to access the file)"
     echo " "
 }
 
-while getopts ":schdb:w:" arg; do
+while getopts ":hsbd:c:w:e:" arg; do
     case $arg in
-        s) selection=1;;
-        d) addBorder=0;;
-        b) borderColor="${OPTARG}";;
-        w) borderWidth="${OPTARG}";;
         h) showHelp; exit;;
+        s) selection=1;;
+        b) addBorder=0;;
+        d) delay="${OPTARG}";;
+        c) borderColor="${OPTARG}";;
+        w) borderWidth="${OPTARG}";;
+        e) execAfter="${OPTARG}";;
     esac
 done
 
-if [ $selection -eq 0 ]
-then
-    # Screenshot full screen
-    import -window root /tmp/.treeshot.png
-else
+if ! [ $delay -eq $delay ] 2> /dev/null; then
+    echo "Delay is not set to a valid integer"; exit
+fi
+
+if [ $delay -lt 0 ]; then
+    echo "Delay cannot be set to less than 0"; exit
+fi
+
+ARGS=""
+if [ $selection -eq 1 ]; then
     # Select region
     slop=$(slop -f "%g") || exit 1
-    read -r area < <(echo $slop)
 
     # Screenshot and crop to specified region
-    import -window root -crop $area /tmp/.treeshot.png
+    ARGS="-crop $slop"
 fi
+
+if [ $delay -ge 0 ]
+then
+    ARGS="$ARGS -delay $delay"
+fi
+
+# Capture screen
+import -window root $ARGS /tmp/.treeshot.png
 
 if [ $addBorder -eq 1 ]; then
     # Add border and shadow
     convert /tmp/.treeshot.png -bordercolor $borderColor -border $borderWidth /tmp/.treeshot.png
 fi
 
-if [ -t ]
-then
+file="/tmp/.treeshot.png"
+eval $execAfter
+
+# Check if running in terminal
+if [ -t ]; then
     # Copy to clipboard
     xclip -selection clipboard -t image/png /tmp/.treeshot.png
 else
@@ -69,5 +90,3 @@ fi
 # Remove file
 rm /tmp/.treeshot.png
 
-# # One liner
-# maim -su | convert - -bordercolor '#EDD7BD' -border 4 /tmp/.treeshot.png; xclip -selection clipboard -t image/png /tmp/.treeshot.png; rm /tmp/.treeshot.png
