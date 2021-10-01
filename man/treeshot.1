@@ -15,14 +15,14 @@ border.
 \f[B]treeshot -s -w\f[R]\f[I]10\f[R] -c\f[R]\f[I]\\#FF0000\f[R]
 Screenshot a region and copy to clipboard with a border of 10 pixels colored red.
 .TP
-\f[B]treeshot -sb\f[R]
-Screenshot a region and copy to clipboard without adding a border.
+\f[B]treeshot -sbd2\f[R]
+Screenshot a region after 2 seconds and copy to clipboard without adding a border.
 .TP
 \f[B]treeshot -s > \f[R]\f[I]selection.png\f[R]
 Screenshot a region and save to selection.png
 .TP
-\f[B]treeshot -s -e"echo $file"\f[R]
-Screenshot a region and copy to clipboard without adding a border.
+\f[B]treeshot -s -e"echo \\$file"\f[R]
+Screenshot a region and echo the temp file location.
 .SH OPTIONS
 .PP
 \f[B]-h\f[R]
@@ -59,7 +59,7 @@ Border width (4 by default)
 .PD 0
 .P
 .PD
-Capture delay in ms
+Capture delay in seconds
 .PP
 \f[B]-e\f[R]\f[I]\f[BI]STRING\f[I]\f[R]
 .PD 0

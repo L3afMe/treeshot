@@ -14,11 +14,14 @@ showHelp() {
     echo "   treeshot -s -w10 -b\\#FF0000"
     echo "     Screenshot a region and copy to clipboard with a border of 10 pixels colored red."
     echo " "
-    echo "   treeshot -sd"
-    echo "     Screenshot a region and copy to clipboard without adding a border."
+    echo "   treeshot -sbd2"
+    echo "     Screenshot a region after 2 seconds and copy to clipboard without adding a border."
     echo " "
     echo "   treeshot -s > selection.png"
-    echo "     Screenshot a region and save to selection.png"
+    echo "     Screenshot a region and save to selection.png."
+    echo " "
+    echo "   treeshot -se\"echo \\\$file\""
+    echo "     Screenshot a region and echo the temp file location."
     echo " "
     echo " Args"
     echo "   -h  Show this help menu"
@@ -26,7 +29,7 @@ showHelp() {
     echo "   -b  Disable border (enabled by default)"
     echo "   -c  Border color (#EDD7BD by default)"
     echo "   -w  Border width (4 by default)"
-    echo "   -d  Capture delay in ms"
+    echo "   -d  Capture delay in seconds"
     echo "   -e  Execute shell after capturing (Use \$file to access the file)"
     echo " "
 }
@@ -51,22 +54,20 @@ if [ $delay -lt 0 ]; then
     echo "Delay cannot be set to less than 0"; exit
 fi
 
-ARGS=""
+# Sleep delay
+sleep $delay
+
+ARGS="-window root"
 if [ $selection -eq 1 ]; then
     # Select region
     slop=$(slop -f "%g") || exit 1
 
     # Screenshot and crop to specified region
-    ARGS="-crop $slop"
-fi
-
-if [ $delay -ge 0 ]
-then
-    ARGS="$ARGS -delay $delay"
+    ARGS="$ARGS -crop $slop"
 fi
 
 # Capture screen
-import -window root $ARGS /tmp/.treeshot.png
+import $ARGS /tmp/.treeshot.png
 
 if [ $addBorder -eq 1 ]; then
     # Add border and shadow
