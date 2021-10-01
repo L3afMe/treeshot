@@ -1,7 +1,6 @@
 #!/bin/sh
 
 selection=0
-showCursor=1
 addBorder=1
 borderWidth=4
 borderColor="#EDD7BD"
@@ -11,10 +10,10 @@ showHelp() {
     echo " "
     echo " Examples"
     echo "   treeshot -s -w10 -b#FF0000"
-    echo "     Screenshot a region and add a border of 10 pixels colored red."
+    echo "     Screenshot a region and copy to clipboard with a border of 10 pixels colored red."
     echo " "
-    echo "   treeshot -scd"
-    echo "     Screenshot a region, without adding a border and showing the cursor."
+    echo "   treeshot -sd"
+    echo "     Screenshot a region and copy to clipboard without adding a border."
     echo " "
     echo "   treeshot -s > selection.png"
     echo "     Screenshot a region and save to selection.png"
@@ -22,7 +21,6 @@ showHelp() {
     echo " Args"
     echo "   -h  Show this help menu"
     echo "   -s  Select region to screenshot (fullscreen by default)"
-    echo "   -c  Show mouse in the screenshot (disabled by default)"
     echo "   -d  Disable border (enabled by default)"
     echo "   -b  Border color (#EDD7BD by default)"
     echo "   -w  Border width (4 by default)"
@@ -32,7 +30,6 @@ showHelp() {
 while getopts ":schdb:w:" arg; do
     case $arg in
         s) selection=1;;
-        c) showCursor=0;;
         d) addBorder=0;;
         b) borderColor="${OPTARG}";;
         w) borderWidth="${OPTARG}";;
@@ -40,11 +37,18 @@ while getopts ":schdb:w:" arg; do
     esac
 done
 
-# Get maim args
-ARGS="$(if [ $selection -eq 1 ]; then echo s; fi)$(if [ $showCursor -eq 1 ]; then echo u; fi)"
+if [ $selection -eq 0 ]
+then
+    # Screenshot full screen
+    import -window root /tmp/.treeshot.png
+else
+    # Select region
+    slop=$(slop -f "%g") || exit 1
+    read -r area < <(echo $slop)
 
-# Take screenshot without cursor
-maim -$ARGS > /tmp/.treeshot.png
+    # Screenshot and crop to specified region
+    import -window root -crop $area /tmp/.treeshot.png
+fi
 
 if [ $addBorder -eq 1 ]; then
     # Add border and shadow

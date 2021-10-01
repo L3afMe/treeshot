@@ -13,13 +13,13 @@ border.
 .SH EXAMPLES
 .TP
 \f[B]treeshot -s -w\f[R]\f[I]10\f[R] -b\f[R]\f[I]#FF0000\f[R]
-Screenshot a region and add a border of 10 pixels colored red.
+Screenshot a region and copy to clipboard with a border of 10 pixels colored red.
 .TP
-\f[B]treeshot -scd\f[R]
-Screenshot a region, without adding a border and showing the cursor.
+\f[B]treeshot -sd\f[R]
+Screenshot a region and copy to clipboard without adding a border.
 .TP
 \f[B]treeshot -s > \f[R]\f[I]selection.png\f[R]
-Screenshot a region, without adding a border and showing the cursor.
+Screenshot a region and save to selection.png
 .SH OPTIONS
 .PP
 \f[B]-h\f[R]
@@ -33,12 +33,6 @@ Show the help menu
 .P
 .PD
 Select region to screenshot (fullscreen by default)
-.PP
-\f[B]-c\f[R]
-.PD 0
-.P
-.PD
-Show mouse in the screenshot (disabled by default)
 .PP
 \f[B]-d\f[R]
 .PD 0
