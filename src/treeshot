@@ -9,6 +9,16 @@ borderColor="#EDD7BD"
 showHelp() {
     echo "  Treeshot - L3af's Mediocre Screenshot Wrapper"
     echo " "
+    echo " Examples"
+    echo "   treeshot -s -w10 -b#FF0000"
+    echo "     Screenshot a region and add a border of 10 pixels colored red."
+    echo " "
+    echo "   treeshot -scd"
+    echo "     Screenshot a region, without adding a border and showing the cursor."
+    echo " "
+    echo "   treeshot -s > selection.png"
+    echo "     Screenshot a region and save to selection.png"
+    echo " "
     echo " Args"
     echo "   -h  Show this help menu"
     echo "   -s  Select region to screenshot (fullscreen by default)"
@@ -41,8 +51,16 @@ if [ $addBorder -eq 1 ]; then
     convert /tmp/.treeshot.png -bordercolor $borderColor -border $borderWidth /tmp/.treeshot.png
 fi
 
-# Copy to clipboard
-xclip -selection clipboard -t image/png /tmp/.treeshot.png
+if [ -t ]
+then
+    # Copy to clipboard
+    xclip -selection clipboard -t image/png /tmp/.treeshot.png
+else
+    # Save to file
+    OUTFILE=$(readlink /proc/$$/fd/1)
+    cp /tmp/.treeshot.png
+fi
+
 
 # Remove file
 rm /tmp/.treeshot.png

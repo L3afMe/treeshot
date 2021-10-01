@@ -5,6 +5,7 @@ treeshot - L3af\[aq]s mediocre screenshot tool
 .SH SYNOPSIS
 .PP
 \f[B]treeshot\f[R] [\f[I]OPTIONS\f[R]]
+Capture a screenshot and copy to clipboard, to save to a file redirect stdout to the desired location.
 .SH DESCRIPTION
 .PP
 \f[B]treeshot\f[R] is a tool to screenshot your screen and add a colored
@@ -15,6 +16,9 @@ border.
 Screenshot a region and add a border of 10 pixels colored red.
 .TP
 \f[B]treeshot -scd\f[R]
+Screenshot a region, without adding a border and showing the cursor.
+.TP
+\f[B]treeshot -s > \f[R]\f[I]selection.png\f[R]
 Screenshot a region, without adding a border and showing the cursor.
 .SH OPTIONS
 .PP
